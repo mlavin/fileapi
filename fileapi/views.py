@@ -1,5 +1,6 @@
 import json
 
+from django import forms
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
 from django.http import JsonResponse, HttpResponseNotFound
@@ -7,6 +8,10 @@ from django.views.generic import View
 
 
 storage = FileSystemStorage()
+
+
+class UploadForm(forms.Form):
+    name = forms.FileField()
 
 
 def file_info(name):
@@ -21,7 +26,7 @@ def file_info(name):
 
 
 class FileListView(View):
-    """Get a list of all available files."""
+    """Get a list of all available files or create a new file."""
 
     def get(self, request):
         """List all files."""
@@ -34,6 +39,17 @@ class FileListView(View):
             'count': len(info),
         }
         return JsonResponse(result)
+
+    def post(self, request):
+        """Add a new file."""
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            upload = form.cleaned_data['name']
+            storage.save(upload.name, upload)
+            result = file_info(upload.name)
+            return JsonResponse(result, status=201)
+        else:
+            return HttpResponse(form.errors.as_json(), status=400, content_type='application/json')
 
 
 class FileDetailView(View):
