@@ -1,10 +1,9 @@
-from django.conf.urls import patterns, include, url
-from django.contrib import admin
+from django.conf.urls import url
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'fileapi.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+from .views import FileListView, FileDetailView
 
-    url(r'^admin/', include(admin.site.urls)),
-)
+
+urlpatterns = [
+    url(r'^uploads/$', FileListView.as_view(), name='upload-list'),
+    url(r'^uploads/(?P<name>.*)', FileDetailView.as_view(), name='upload-detail'),
+]
