@@ -3,7 +3,7 @@ import json
 from django import forms
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
-from django.http import JsonResponse, HttpResponseNotFound
+from django.http import JsonResponse, HttpResponseNotFound, HttpResponse
 from django.views.generic import View
 
 
@@ -53,7 +53,7 @@ class FileListView(View):
 
 
 class FileDetailView(View):
-    """Get details for a single file."""
+    """Get details for a single file or delete the file."""
 
     def get(self, request, name):
         """Get details for a file."""
@@ -62,3 +62,11 @@ class FileDetailView(View):
             return JsonResponse(result)
         else:
             return HttpResponseNotFound()
+
+    def delete(self, request, name):
+        """Delete a file."""
+        if storage.exists(name):
+            storage.delete(name)
+            return HttpResponse(status=204)
+        else:
+            return HttpResponse(status=410)
