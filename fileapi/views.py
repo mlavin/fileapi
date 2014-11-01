@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse
 from django.http import JsonResponse, HttpResponseNotFound, HttpResponse
 from django.views.generic import View, TemplateView
 
+from jwt_auth.mixins import JSONWebTokenAuthMixin
+
 
 storage = FileSystemStorage()
 
@@ -25,7 +27,7 @@ def file_info(name):
     }
 
 
-class FileListView(View):
+class FileListView(JSONWebTokenAuthMixin, View):
     """Get a list of all available files or create a new file."""
 
     def get(self, request):
@@ -52,7 +54,7 @@ class FileListView(View):
             return HttpResponse(form.errors.as_json(), status=400, content_type='application/json')
 
 
-class FileDetailView(View):
+class FileDetailView(JSONWebTokenAuthMixin, View):
     """Get details for a single file or delete the file."""
 
     def get(self, request, name):
