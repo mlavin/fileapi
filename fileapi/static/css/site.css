@@ -1,0 +1,19 @@
+#content {
+    width: 80%;
+    margin: 0 auto;
+    padding: 100px 0;
+}
+
+#content > h1 {
+    text-align: center;
+}
+
+#files {
+    display: none;
+    margin: 20px auto;
+    border: 1px solid black;
+}
+
+#files .file {
+    padding: 5px;
+}
