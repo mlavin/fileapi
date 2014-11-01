@@ -18,6 +18,12 @@
             <input type="submit" value="Login">
         </form>
     </div>
+    <script id="config" type="text/json">
+        {
+            "api": "{% url 'upload-list' %}",
+            "login": "{% url 'api-token' %}"
+        }
+    </script>
     <script src="{% static 'libs/jquery.js' %}"></script>
     <script src="{% static 'libs/underscore.js' %}"></script>
     <script src="{% static 'libs/backbone.js' %}"></script>

@@ -1,5 +1,7 @@
 (function ($, Backbone, _) {
 
+    var config = JSON.parse($('#config').text());
+
     var Upload = Backbone.Model.extend({
         url: function () {
             var links = this.get('links'),
@@ -14,7 +16,7 @@
     
     var UploadCollection = Backbone.Collection.extend({
         model: Upload,
-        url: '/uploads/',
+        url: config.api,
         parse: function (response) {
             this._count = response.count;
             return response.files || [];
@@ -127,7 +129,7 @@
                 password: $(':input[name="password"]', this.$el).val(),
             });
             $('.error', this.$el).remove();
-            $.post('/api-token/', data)
+            $.post(config.login, data)
                 .done($.proxy(this.login, this))
                 .fail($.proxy(this.fail, this));
         },
