@@ -23,4 +23,28 @@
 
     var uploads = new UploadCollection();
 
+    var UploadView = Backbone.View.extend({
+        className: 'file',
+        template: _.template('<%- name %>'),
+        initialize: function () {
+            this.listenTo(this.model, 'change', this.render);
+            this.listenTo(this.model, 'destroy', this.remove);
+        },
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+        }
+    });
+
+    var UploadListingView = Backbone.View.extend({
+        el: '#files',
+        render: function () {
+            this.$el.show();
+        },
+        addFile: function (file) {
+            var view = new UploadView({model: file});
+            this.$el.append(view.$el);
+            view.render();
+        }
+    });
+
 })(jQuery, Backbone, _);
