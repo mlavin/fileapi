@@ -4,7 +4,7 @@ from django import forms
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
 from django.http import JsonResponse, HttpResponseNotFound, HttpResponse
-from django.views.generic import View
+from django.views.generic import View, TemplateView
 
 
 storage = FileSystemStorage()
@@ -70,3 +70,7 @@ class FileDetailView(View):
             return HttpResponse(status=204)
         else:
             return HttpResponse(status=410)
+
+
+class IndexView(TemplateView):
+    template_name = 'index.html'
