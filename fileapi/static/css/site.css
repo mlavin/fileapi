@@ -33,3 +33,12 @@
     background: #ccc;
     border: 2px solid black;
 }
+
+#login {
+    text-align: center;
+}
+
+#login input {
+    display: block;
+    margin: 10px auto;
+}
