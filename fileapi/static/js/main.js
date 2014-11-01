@@ -47,4 +47,9 @@
         }
     });
 
+    var listView = new UploadListingView();
+    uploads.on('add', listView.addFile, listView);
+    uploads.fetch();
+    listView.render();
+
 })(jQuery, Backbone, _);
