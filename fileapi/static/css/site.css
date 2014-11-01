@@ -17,3 +17,7 @@
 #files .file {
     padding: 5px;
 }
+
+#files .delete {
+    float: right;
+}

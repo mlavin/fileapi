@@ -25,13 +25,20 @@
 
     var UploadView = Backbone.View.extend({
         className: 'file',
-        template: _.template('<%- name %>'),
-        initialize: function () {
+        template: _.template('<%- name %> <a class="delete" href="#">X</a>'),
+        events: {
+            'click .delete': 'delete'
+        },
+        initialize: function() {
             this.listenTo(this.model, 'change', this.render);
             this.listenTo(this.model, 'destroy', this.remove);
         },
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
+        },
+        delete: function (e) {
+            e.preventDefault();
+            this.model.destroy();
         }
     });
 
