@@ -21,3 +21,15 @@
 #files .delete {
     float: right;
 }
+
+#upload {
+    display: none;
+    text-align: center;
+    padding: 25px;
+    border: 2px dashed black;
+}
+
+#upload.hover {
+    background: #ccc;
+    border: 2px solid black;
+}
