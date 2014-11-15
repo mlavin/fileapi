@@ -6,6 +6,9 @@ webcast: http://www.oreilly.com/pub/e/3154
 
 It demonstrates a basic REST API using Django and a JS client application using Backbone.
 
+You can find a demo application running at http://fileapi.mlavin.org (Login: guest/guest)
+Uploaded files must be less than 1 MB and the directory is cleared every 5 mins.
+
 
 Project Requirements
 --------------------
