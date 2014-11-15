@@ -1,3 +1,11 @@
+# Base requirements
 Django==1.7.1
 PyJWT==0.2.1
 django-jwt-auth==0.0.1
+
+# Deployment requirements
+gunicorn>=19.1,<19.2
+dj-database-url==0.3.0
+dj-static==0.0.6
+static3==0.5.1
+psycopg2==2.5.4
