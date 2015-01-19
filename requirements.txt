@@ -9,3 +9,7 @@ dj-database-url==0.3.0
 dj-static==0.0.6
 static3==0.5.1
 psycopg2==2.5.4
+
+# Testing requirements
+selenium==2.44.0
+coverage==3.7.1
