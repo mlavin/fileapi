@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>QUnit Test Suite</title>
+    <link rel="stylesheet" href="libs/qunit.css">
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script>
+        var config = {
+            api: '/uploads/',
+            login: '/login/'
+        };
+    </script>
+    <script src="libs/qunit.js"></script>
+    <script src="../../static/libs/jquery.js"></script>
+    <script src="../../static/libs/underscore.js"></script>
+    <script src="../../static/libs/backbone.js"></script>
+    <script src="../../static/js/models.js"></script>
+    <script src="../../static/js/views.js"></script>
+    <script src="tests/test_models.js"></script>
+</body>
+</html>
