@@ -1,5 +1,5 @@
 # Base requirements
-Django==1.7.1
+Django==1.7.3
 PyJWT==0.2.1
 django-jwt-auth==0.0.1
 
