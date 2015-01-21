@@ -1,8 +1,10 @@
 import os
 
 from django.conf import settings
+from django.contrib.staticfiles import finders, storage
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test.utils import override_settings
+from django.utils.functional import empty
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -23,6 +25,12 @@ class QunitTests(StaticLiveServerTestCase):
     def tearDownClass(cls):
         cls.browser.quit()
         super().tearDownClass()
+
+    def setUp(self):
+        # Clear the cache versions of the staticfiles finders and storage
+        # See https://code.djangoproject.com/ticket/24197
+        storage.staticfiles_storage._wrapped = empty
+        finders.get_finder.cache_clear()
 
     def test_qunit(self):
         """Load the QUnit tests and check for failures."""
