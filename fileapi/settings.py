@@ -78,3 +78,21 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+def jwt_decode_handler(token):
+    """Customized handler to fix compatibility with pyJWT 1.0+"""
+    import jwt
+    from jwt_auth import settings as jwt_settings
+    options = {
+        'verify_exp': jwt_settings.JWT_VERIFY_EXPIRATION,
+    }
+    return jwt.decode(
+        token,
+        key=jwt_settings.JWT_SECRET_KEY,
+        verify=jwt_settings.JWT_VERIFY,
+        algorithms=[jwt_settings.JWT_ALGORITHM, ],
+        leeway=jwt_settings.JWT_LEEWAY,
+        options=options)
+
+JWT_DECODE_HANDLER = jwt_decode_handler
