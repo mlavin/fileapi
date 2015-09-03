@@ -1,5 +1,3 @@
-import json
-
 from django import forms
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
