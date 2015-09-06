@@ -3,7 +3,7 @@ import os
 from django.conf import settings
 from django.contrib.staticfiles import finders, storage
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from django.test.utils import override_settings
+from django.test.utils import modify_settings
 from django.utils.functional import empty
 
 from selenium import webdriver
@@ -12,7 +12,8 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
 
 
-@override_settings(STATICFILES_DIRS=(os.path.join(os.path.dirname(__file__), 'static'), ))
+@modify_settings(STATICFILES_DIRS={
+    'append': os.path.join(os.path.dirname(__file__), 'static')})
 class QunitTests(StaticLiveServerTestCase):
     """Iteractive tests with selenium."""
 
