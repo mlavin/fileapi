@@ -8,7 +8,7 @@ gunicorn>=19.1,<19.2
 dj-database-url==0.3.0
 dj-static==0.0.6
 static3==0.5.1
-psycopg2==2.5.4
+psycopg2-binary==2.7.4
 
 # Testing requirements
 selenium==2.44.0
